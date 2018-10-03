@@ -1,0 +1,33 @@
+@font-face {
+  font-family: 'quoting';
+  src:  url('quoting-icon-fonts/quoting.eot?m3y596');
+  src:  url('quoting-icon-fonts/quoting.eot?m3y596#iefix') format('embedded-opentype'),
+    url('quoting-icon-fonts/quoting.ttf?m3y596') format('truetype'),
+    url('quoting-icon-fonts/quoting.woff?m3y596') format('woff'),
+    url('quoting-icon-fonts/quoting.svg?m3y596#quoting') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+i {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'quoting' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon{
+	padding-left: 5px;
+}
+
+.icon-exacoin:before {
+  content: "\e901";
+}

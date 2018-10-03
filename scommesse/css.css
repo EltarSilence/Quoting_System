@@ -1,0 +1,84 @@
+#scom {
+	font-family: 'Ubuntu', sans-serif;
+	color: white;
+	border: 8px solid #2836af;
+	background-color: #33396d;
+	width: 100%;
+	text-align: center;
+	border-collapse: collapse;
+	table-layout: fixed;
+}
+
+.scomTable td, table.scomTable th {
+	border: 1px solid #AAAAAA;
+	padding: 3px 2px;
+}
+
+.scomTable tbody td {
+	font-size: 13px;
+	font-style: italic;
+}
+
+.scomTable tr:nth-child(even) {
+	background: #3849e0;
+}
+
+.scomTable thead {
+	background: blue;
+}
+
+.scomTable thead th {
+	font-size: 60px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-align: center;
+	border-left: 2px solid #A40808;
+}
+
+.scomTable thead th:first-child {
+	border-left: none;
+}
+
+.scomTable tfoot {
+	font-size: 13px;
+	font-weight: bold;
+	color: #FFFFFF;
+	background: #A40808;
+}
+
+.scomTable tfoot td {
+	font-size: 13px;
+}
+
+.scomTable tfoot .links {
+	text-align: right;
+}
+
+.scomTable tfoot .links a{
+	display: inline-block;
+	background: #FFFFFF;
+	color: #A40808;
+	padding: 2px 8px;
+	border-radius: 5px;
+}
+
+/*Submenu*/
+
+.show {
+	display: none;
+	position: absolute;
+	background-color: #2836af;
+	list-style-type: none;
+	padding: 1em;
+	width: 82%;
+	left: 0em;
+}
+.show li {
+	padding: 1em;
+}
+.student:hover .show {
+	display: block;
+}
+.student {
+	position: relative;
+}
