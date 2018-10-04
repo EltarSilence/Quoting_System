@@ -45,7 +45,7 @@ function newScommessa($data, $materia){
 			$EXACT_single = $excel->setActiveSheetIndex(0)->getCell('A'.$ex)->getCalculatedValue();
 			$EXACT[$EXACT_values[$ex-6]] = $EXACT_single;
 		}
-		var_dump($EXACT);
+		
 		$students['Esatto'] = $EXACT;
 
 
@@ -59,7 +59,7 @@ function newScommessa($data, $materia){
 			$UNDER_single = $excel->setActiveSheetIndex(0)->getCell('D'.$ex)->getCalculatedValue();
 			$UNDER[$UNDER_values[$ex-6]] = $UNDER_single;
 		}
-	        //var_dump($UNDER);
+	        
 		$students['Under'] = $UNDER;
 
 	        //lettura over
@@ -69,7 +69,7 @@ function newScommessa($data, $materia){
 			$OVER_single = $excel->setActiveSheetIndex(0)->getCell('D'.$ex)->getCalculatedValue();
 			$OVER[$OVER_values[$ex-6]] = $OVER_single;
 		}
-	        //var_dump($UNDER);
+	        
 		$students['Over'] = $OVER;
 		
 		mysqli_close($conn);
@@ -81,14 +81,14 @@ function newScommessa($data, $materia){
 
 	}
 
-	var_dump($json);
+	$fp = fopen('../avvenimenti/'.$materia.'_'.date('Ymd', strtotime($data)).'.json', 'w');
+	fwrite($fp, json_encode($json));
+	fclose($fp);
+}
 
 
 	//PROVA di esecuzione
-	newScommessa("2018-10-01", "Matematica");
-
-
-	
+	newScommessa($_POST["data"], $_POST["materia"]);
 
 	
 	?>
