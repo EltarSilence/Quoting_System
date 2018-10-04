@@ -2,8 +2,9 @@
 	require_once '../PHPExcel/Classes/PHPExcel.php';
 	include '../config.php';
 
-	function getMedia($studente, $materia, $conn){
-		$sql = 'SELECT Avg([value]) AS media FROM risultati WHERE chiave Like "'.$materia.'_*_'.$studente.'"';
+	function getMedia($studente, $materia, $data, $conn){
+		$sql = 'SELECT Avg([value]) AS media FROM risultati WHERE chiave Like "'.$materia.'_*_'.$studente.'" AND SUBSTRING(chiave, INSTR(chiave, "_")+1, 8) <= "'.date('Ymd', strtotime($data)).'"';
+		
 		$result = mysqli_query($conn, $sql);
 		$v = 6.7;
 		while($row = mysqli_fetch_assoc($result)){
@@ -12,20 +13,18 @@
 		return $v;
 	}
 
-	function newScommessa($data){
+	function newScommessa($data, $materia){
 		$conn = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
 
 		$objReader = PHPExcel_IOFactory::createReader("Excel2007");
 		$excel = $objReader->load('Quoting.xlsx');
-		$materia = "Informatica";
-		
+
 		foreach (STUDENTI as $value) {
 			$excel->setActiveSheetIndex(0)
 	            ->setCellValue('A2', $materia)
 	            ->setCellValue('B2', $value)
-	            ->setCellValue('C2', getMedia($value, $materia, $conn))
+	            ->setCellValue('C2', getMedia($value, $materia, $data, $conn))
 	            ->setCellValue('D2', $data);
-
 
 	        $key = $materia.'_'.date('Ymd', strtotime($data)).'_'.$value;
 
@@ -125,10 +124,8 @@
 
 
 	//PROVA di esecuzione
-	newScommessa("2018-10-01");
+	newScommessa("2018-10-01", "Informatica");
 
-
-	
 
 	
 ?>
