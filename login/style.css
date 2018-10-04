@@ -3,7 +3,7 @@ body{
 	padding:0px;
 	font-family: 'Comfortaa', cursive;
 	text-align:center;
-	background-image: url('casino2.jpg');
+	background-image: url('../images/casino.jpg');
     background-size: 100%;
     background-repeat: no-repeat;
 }
