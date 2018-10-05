@@ -20,6 +20,8 @@ List of functionalities:
   * Check the integrity and usability of pre-generated SQL queries 
   * Code indentation
 
+* Log system, even simple
+
 * Review of betting modalities
 
 * Draft a detailed regulation for the players
