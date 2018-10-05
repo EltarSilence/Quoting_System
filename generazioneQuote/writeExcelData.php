@@ -22,6 +22,8 @@ function newScommessa($data, $materia){
 
 	$json = array();
 
+	$sql = 'INSERT INTO disponibili (dal, al, chiave) VALUES ("'.date('Y-m-d', strtotime('-10 day', strtotime($data))).'", "'.$data.'", "'.$materia.'_'.date('Ymd', strtotime($data)).'")';
+
 	foreach (STUDENTI as $value) {
 		$excel->setActiveSheetIndex(0)
 		->setCellValue('A2', $materia)
@@ -32,7 +34,7 @@ function newScommessa($data, $materia){
 
 		$key = $materia.'_'.date('Ymd', strtotime($data)).'_'.$value;
 
-		$sql = 'INSERT INTO disponibili (dal, al, chiave) VALUES ("'.date('Y-m-d', strtotime('-10 day', strtotime($data))).'", "'.$data.'", "'.$key.'")';
+		
 
 		$result = mysqli_query($conn, $sql);
 

@@ -65,3 +65,8 @@ body {
 	border-radius: 25px;
 	box-shadow: 0 0 20px 6px #FFEB3B;
 }
+
+#scom {
+	height: 600px;
+	padding: 0;
+}

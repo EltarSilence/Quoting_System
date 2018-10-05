@@ -63,7 +63,7 @@ session_start();
 	</div>
 	<br>
 	<div class="row" style="margin:0px">
-		<iframe src="scommesse/scommesse.php" class="col-md-7" style="height: 600px;"></iframe>
+		<iframe src="scommesse/scommesse.php" class="col-md-7" id="scom"></iframe>
 		<iframe src="topWins/topWins.php" id="topvincite" class="col-md-4"></iframe> 
 	</div>
 
