@@ -54,6 +54,7 @@ if(!empty($_POST['username']) && !empty($_POST['password'])){
             </div>
             <div class="right-frm">
                 <div>
+					<h3 class="sign-link"><a href="register.php">Sign-up <span>&#8250;</span>  </a></h3>
                     <h1 <?php if(!empty($message) || $message==""){echo "style='margin-bottom:0'";} ?>>Sign-in</h1>
 					<?php 
 						if(!empty($message)){
@@ -63,7 +64,7 @@ if(!empty($_POST['username']) && !empty($_POST['password'])){
                     <form action="login.php" method="POST">
                         <input type="text" placeholder="Username" name="username">
                         <input type="password" placeholder="Password" name="password">
-                        <input type="submit" value="INVIA">
+                        <input type="submit" value="Enter">
                     </form>
                 </div>
             </div>

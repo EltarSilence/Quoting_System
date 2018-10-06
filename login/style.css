@@ -67,4 +67,7 @@ input[type="text"], input[type="password"]{border:none;border-bottom: 2px solid 
 input[type="submit"]{font-size: 16px;background: #95002a;border-radius: 8px;}
 .flex{display: flex;}
 .message{color: #ce2d2d;}
+.sign-link>a{color: #fff;text-decoration: none;padding: 10px;border: 2px solid #95002a;border-radius: 15px;transition: all 0.5s;}
+.sign-link>a:hover{background: #95002a;}
+
 
