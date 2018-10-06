@@ -1,34 +1,39 @@
+html,body{width: 100%;height: 100%;}
 body{
 	margin: 0px;
 	padding: 0px;
 	font-family: 'Comfortaa', cursive;
 	text-align:center;
-	background-image: url('../images/casino.jpg');
-    background-size: 100%;
-    background-repeat: no-repeat;
 }
+.siign{	display: flex;background: #220a1a;}
 input[type="text"], input[type="password"]{
 	outline:none;
 	padding:10px;
 	display:block;
-	width:300px;
+	width:63%;
 	border-radius: 3px;
 	border:1px solid #eee;
 	margin:20px auto;
+	font-family: 'Comfortaa', cursive;
+	font-size: 16px;
 }
 input[type="submit"]{
 	padding:10px;
 	color:#fff;
 	background:#0098cb;
-	width:320px;
+	width:70%;
 	margin:20px auto;
 	margin-top:0px;
 	border:0px;
 	border-radius: 3px;
 	cursor:pointer;
+	transition: all 0.5s;
+	font-family: 'Comfortaa', cursive;
+	font-size: 16px;
+	font-weight: bold;
 }
 input[type="submit"]:hover{
-	background:#00b8eb;
+	background:#720c29;
 }
 .header{
 	border-bottom:1px solid #eee;
@@ -47,3 +52,19 @@ input[type="submit"]:hover{
 .white{
 	color: white;
 }
+
+.sign-container{display: flex;align-items: flex-start;width: 100%;height: 80%;margin-top: 5%;margin-bottom: 5%;}
+h1,h2,h3,p{color: #fff}
+.sign-container>div{width: 50%;height: 100%;}
+.sign-container>div:first-child{display: flex;position: relative;align-items: center;margin-left: 10%;}
+.sign-container>div:first-child>div:nth-child(2){position: absolute;left: 0%;width: 100%;}
+.left-bk{background: url(../images/carl-raw-563328.jpg);background-size: cover;background-position: top center;background-repeat: no-repeat;display: flex;width: 100%;align-items: center;border-top-left-radius: 10px;border-bottom-left-radius: 10px;opacity: 0.4;height: 100%;}
+.right-frm{display: flex;align-items: center;background: #000;width: 100%;margin-right: 10%;border-top-right-radius: 10px;border-bottom-right-radius: 10px;}
+.left-bk>div{width: 100%;}
+.right-frm>div{background:none;margin: 0 auto;padding: 0px 50px 60px 50px;border-radius: 15px;width: 100%;}
+.right-frm>div h1{margin-top: 30px;margin-bottom: 60px;}
+input[type="text"], input[type="password"]{border:none;border-bottom: 2px solid #95002a;background: none;font-size: 16px;color:#fff;}
+input[type="submit"]{font-size: 16px;background: #95002a;border-radius: 8px;}
+.flex{display: flex;}
+.message{color: #ce2d2d;}
+
