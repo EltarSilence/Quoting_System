@@ -13,7 +13,6 @@ function getMedia($studente, $materia, $data, $conn){
 	return $v;
 }
 
-
 function newScommessa($data, $materia){
 	$conn = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
 
@@ -31,47 +30,37 @@ function newScommessa($data, $materia){
 		->setCellValue('C2', getMedia($value, $materia, $data, $conn))
 		->setCellValue('D2', $data);
 
-
 		$key = $materia.'_'.date('Ymd', strtotime($data)).'_'.$value;
-
-		
 
 		$result = mysqli_query($conn, $sql);
 
 		$students = array();
 
-	        //lettura voti esatti
+	    //lettura voti esatti
 		$EXACT = array();
 		$EXACT_values = array("10","9.5","9","8.5","8","7.5","7","6.5","6","5.5","5","4.5","4","3.5","3","2","1");
 		for ($ex = 6; $ex<=22; $ex++) {
 			$EXACT_single = $excel->setActiveSheetIndex(0)->getCell('A'.$ex)->getCalculatedValue();
 			$EXACT[$EXACT_values[$ex-6]] = $EXACT_single;
 		}
-		
 		$students['Esatto'] = $EXACT;
 
-
-	        //$EXACT = array($EXACT10,$EXACT9h,$EXACT9,$EXACT8h,$EXACT8,$EXACT7h,$EXACT7,$EXACT6h,$EXACT6,$EXACT5h,$EXACT5,$EXACT4h,$EXACT4,$EXACT3h,$EXACT3,$EXACT2,$EXACT1);
-
-
-	        //lettura under
+	    //lettura under
 		$UNDER = array();
 		$UNDER_values = array("10","9.75","9.25","8.75","8.25","7.75","7.25","6.75","6.25","5.75","5.25","4.75","4.25","3.75","3.25","2");
 		for ($ex = 6; $ex<=22; $ex++) {
 			$UNDER_single = $excel->setActiveSheetIndex(0)->getCell('D'.$ex)->getCalculatedValue();
 			$UNDER[$UNDER_values[$ex-6]] = $UNDER_single;
 		}
-	        
 		$students['Under'] = $UNDER;
 
-	        //lettura over
+	    //lettura over
 		$OVER = array();
 		$OVER_values = array("9.25","8.75","8.25","7.75","7.25","6.75","6.25","5.75","5.25","4.75","4.25","3.75","3.25","2");
 		for ($ex = 6; $ex<=22; $ex++) {
 			$OVER_single = $excel->setActiveSheetIndex(0)->getCell('D'.$ex)->getCalculatedValue();
 			$OVER[$OVER_values[$ex-6]] = $OVER_single;
 		}
-	        
 		$students['Over'] = $OVER;
 		
 		mysqli_close($conn);
@@ -88,9 +77,7 @@ function newScommessa($data, $materia){
 	fclose($fp);
 }
 
-
 	//PROVA di esecuzione
 	newScommessa($_POST["data"], $_POST["materia"]);
 
-	
-	?>
+?>
