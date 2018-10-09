@@ -11,26 +11,20 @@ List of functionalities:
 <hr>
 <h1>ToDo List</h1>
 
-* Frontend view about betting
-  * Interactive interface and user-friendly betting action
-  * Web Designing of the _iframe_
-  * AJAX call to send data
-  
-* Completing the PHP scripts and functions to extract data from the DB
-  * Check the integrity and usability of pre-generated SQL queries 
-  * Code indentation
+* Frontend
+	* Creare il frame per le scommesse <i>status : Only started</i>
+	* Lavorare a un design per il login <i>status : Work in progress</i>
 
-* Log system, even simple
+* Backend
+	* Creare un sistema per i log, <i>status : Work in progress</i>
 
-* Review of betting modalities
+* Creare dei termini di utilizzo dellaweb app <i>status : Not started</i>
 
-* Draft a detailed regulation for the players
+* Pensare a bonus di benvenuto / bonus accesso <i>status : Not started</i>
 
-* Discuss about bonus _Exacoins_ assignment hereafter
+* Rinominare _main.php_ in _index.php_ e modificare .htaccess
 
-* Renaming the _main.php_ file in an _index.php_ or modify the .htaccess
-
-* Bugfix and pointless comment removal
+* Miglioramento del codice, bug fixed 
 
 And then... we'll release the <h5>Quoting System 1.0</h5>
 
