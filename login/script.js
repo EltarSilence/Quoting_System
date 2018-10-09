@@ -1,6 +1,5 @@
 $(document).ready(function(){
 	setBackground();
-	
 	$(window).on('resize', function(ev){
 		setBackground()
 	});

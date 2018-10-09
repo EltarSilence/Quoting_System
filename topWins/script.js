@@ -1,19 +1,4 @@
 $(document).ready(function(){
-	/*
-	$.ajax({
-		url: "php/loginController.php",
-		type: 'POST',
-		data: formdata,
-		processData: false,
-		contentType: false,
-		beforeSend: function(){
-		},
-		success: function (data){
-		},
-		error: function(er){
-		}
-	});
-	*/
 	var time = 5000;
 	var active = 1;
 	$('*[id^=vincita]:not(#vincita' + active + ')').fadeOut(1);

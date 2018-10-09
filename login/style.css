@@ -5,7 +5,11 @@ body{
 	font-family: 'Comfortaa', cursive;
 	text-align:center;
 }
-.siign{	display: flex;background: #220a1a;height: 100%;}
+.siign{	
+	display: flex;
+	background: #220a1a;
+	height: 100%;
+}
 input[type="text"], input[type="password"]{
 	outline:none;
 	padding:10px;
