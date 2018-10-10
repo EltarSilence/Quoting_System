@@ -66,7 +66,7 @@ h1,h2,h3,p{color: #fff}
 .right-frm{display: flex;align-items: center;background: #000;width: 100%;margin-right: 10%;border-top-right-radius: 10px;border-bottom-right-radius: 10px;}
 .left-bk>div{width: 100%;}
 .right-frm>div{background:none;margin: 0 auto;padding: 0px 50px 60px 50px;border-radius: 15px;width: 100%;}
-.right-frm>div h1{margin-top: 30px;margin-bottom: 60px;}
+.right-frm>div h1{margin-top: 30px;margin-bottom: 0px;}
 input[type="text"], input[type="password"]{border:none;border-bottom: 2px solid #95002a;background: none;font-size: 16px;color:#fff;}
 input[type="submit"]{font-size: 16px;background: #95002a;border-radius: 8px;}
 .flex{display: flex;}
