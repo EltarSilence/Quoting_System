@@ -1,5 +1,13 @@
 <?php
-
+/*
+	checkAndPayBet
+	[x] Data: 10 ott 2018
+	[x] Descrizione: La funzione calcola la vincita per ogni scommessa e in caso di vincita accredita denaro sul conto dell'utente. Per ogni modalita' di gioco (UNDER, OVER, ecc.) la funzione computa un procedimento da effettuare al fine di registrare la scommessa nel database considerandola pagata se la vincita non sia "null".
+	[x] Parametri IN: nessuno
+	[x] Ritorna: /
+	[x] Changelog: v1.0
+	[x] Ultima modifica: creazione
+*/
 function checkAndPayBet(){
 	$conn = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
 	$sql = "SELECT * FROM scommesse WHERE pagata = 0";
@@ -51,6 +59,15 @@ function checkAndPayBet(){
 	}
 }
 
+/*
+	cmp
+	[x] Data: 10 ott 2018
+	[x] Descrizione: Compara il valore del primo con il valore del secondo.
+	[x] Parametri IN: due array associativi $a e $b.
+	[x] Ritorna: 1 o -1
+	[x] Changelog: v1.0
+	[x] Ultima modifica: creazione
+*/
 function cmp($a, $b){
 	foreach($a as $akey => $avalue){
 		foreach($b as $bkey => $bvalue){
@@ -60,6 +77,15 @@ function cmp($a, $b){
 	return 0;
 }
 
+/*
+	getWinsWeek
+	[x] Data: 10 ott 2018
+	[x] Descrizione: La funzione preleva dal database, separandosi tra le varie modalita' di gioco, tutte le vincite dell'ultima settimana, e le inserisce in un array.
+	[x] Parametri IN: nessuno
+	[x] Ritorna: Array di vincite.
+	[x] Changelog: v1.0
+	[x] Ultima modifica: creazione
+*/
 function getWinsWeek() {
 	$sql = "SELECT scommesse.*, utenti.username FROM scommesse  INNER JOIN utenti ON utenti.id = scommesse.idUtente WHERE scommesse.data >= '".date("Y-m-d", strtotime(date("Y-m-d")."-7day"))."'";
 	$result = mysqli_query($conn, $sql);
@@ -110,6 +136,15 @@ function getWinsWeek() {
 	return $winner_s;
 }
 
+/*
+	getWinsMonth
+	[x] Data: 10 ott 2018
+	[x] Descrizione: La funzione preleva dal database, separandosi tra le varie modalita' di gioco, tutte le vincite degli ultimi 30 giorni, e le inserisce in un array.
+	[x] Parametri IN: nessuno
+	[x] Ritorna: Array di vincite.
+	[x] Changelog: v1.0
+	[x] Ultima modifica: creazione
+*/
 function getWinsMonth(){
 	$sql = "SELECT scommesse.*, utenti.username FROM scommesse  INNER JOIN utenti ON utenti.id = scommesse.idUtente WHERE scommesse.data >= '".date("Y-m-d", strtotime(date("Y-m-d")."-30day"))."'";
 	$result = mysqli_query($conn, $sql);
@@ -161,6 +196,15 @@ function getWinsMonth(){
 	return $winner_m;
 }
 
+/*
+	getVerificheDisponibili
+	[x] Data: 10 ott 2018
+	[x] Descrizione: La funzione preleva dal database tutti gli esiti sui quali si puo' scommettere per mezzo di un filtro generato da un intervallo di date.
+	[x] Parametri IN: nessuno
+	[x] Ritorna: Array di esiti.
+	[x] Changelog: v1.0
+	[x] Ultima modifica: creazione
+*/
 function getVerificheDisponibili(){
 	$conn = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
 	$sql = "SELECT * FROM disponibili WHERE dal <= '".date("Y-m-d")."' AND al >= '".date("Y-m-d")."'";
@@ -173,6 +217,15 @@ function getVerificheDisponibili(){
 	return $verifiche;
 }
 
+/*
+	getMedia
+	[x] Data: 10 ott 2018
+	[x] Descrizione: La funzione calcola autonomamente la media di uno studente dato. Qualora non fossero presenti dati a sufficienza impostera' come valore di default 6,7.
+	[x] Parametri IN: string(studente), string(materia), string(data), oggetto di connessione.
+	[x] Ritorna: Media delle valutazioni.
+	[x] Changelog: v1.0
+	[x] Ultima modifica: creazione
+*/
 function getMedia($studente, $materia, $data, $conn){
 	$sql = 'SELECT Avg([value]) AS media FROM risultati WHERE chiave Like "'.$materia.'_*_'.$studente.'" AND SUBSTRING(chiave, INSTR(chiave, "_")+1, 8) <= "'.date('Ymd', strtotime($data)).'"';
 
@@ -184,6 +237,15 @@ function getMedia($studente, $materia, $data, $conn){
 	return $v;
 }
 
+/*
+	newScommessa
+	[x] Data: 10 ott 2018
+	[x] Descrizione: La funzione calcola per mezzo di un foglio excel le quote per ogni avvenimento e le inserisce in un file JSON. Questo file sara' nominato come 'materia_data'. Una volta fatto cio' inserira' l'esito sul quale si potra' scommettere nell'apposita tabella 'disponibili' del database.
+	[x] Parametri IN: string(data), string(materia)
+	[x] Ritorna: /
+	[x] Changelog: v1.0
+	[x] Ultima modifica: creazione
+*/
 function newScommessa($data, $materia){
 	$conn = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
 
