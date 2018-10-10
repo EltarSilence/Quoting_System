@@ -1,18 +1,9 @@
 <?php 
 	session_start();
-	require_once "../config.php"; 
+	require_once('../config.php');
+	require_once('../functions.php');
 
-	function getVerificheDisponibili(){
-		$conn = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
-		$sql = "SELECT * FROM disponibili WHERE dal <= '".date("Y-m-d")."' AND al >= '".date("Y-m-d")."'";
-		$result = mysqli_query($conn, $sql);
-		$verifiche = array();
-		while($row = mysqli_fetch_assoc($result)){
-			array_push($verifiche, $row);
-		}
-		mysqli_close($conn);
-		return $verifiche;
-	}
+	
 ?>
 <!DOCTYPE html>
 <html>
