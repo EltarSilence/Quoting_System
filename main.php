@@ -1,8 +1,7 @@
 <?php 
-//require_once 'redirect.php'; 
-require 'config.php';
-session_start();
-
+	//require_once 'redirect.php'; 
+	require 'config.php';
+	session_start();
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +40,6 @@ session_start();
 			<div class="row">
 				<div>'.$row['username'].'</div>
 				<div>';
-					
 						echo $row['coin'].'<i class="icon icon-exacoin"></i></div>
 					</div>
 					<a href="login/logout.php">
@@ -62,9 +60,14 @@ session_start();
 		
 	</div>
 	<br>
-	<div class="row" style="margin:0px">
-		<iframe src="scommesse/scommesse.php" class="col-md-7" id="scom"></iframe>
-		<iframe src="topWins/topWins.php" id="topvincite" class="col-md-4"></iframe> 
+	<div class="row" style="margin: 0px;">
+		<div class="col-sm-8">
+			<iframe src="scommesse/scommesse.php" class="col-sm-12" id="scom"></iframe>
+		</div>
+		<div class="col-sm-4">
+			<iframe src="topWins/topWins.php" class="col-sm-12" id="topvincite"></iframe> 
+			<iframe src="biglietto/biglietto.php" class="col-sm-12" id="biglietto"></iframe> 
+		</div>
 	</div>
 
 </body>

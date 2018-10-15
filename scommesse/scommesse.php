@@ -1,7 +1,8 @@
 <?php 
 	session_start();
 	require_once('../config.php');
-	require_once('../functions.php');	
+	require_once('../functions.php');
+	require_once('../PHPExcel/Classes/PHPExcel.php');	
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,18 +25,32 @@
 			$arr = explode("_", $_GET['verifica']);
 			if(sizeof($arr) != 2 || !in_array($arr[0], MATERIE)){
 				header("Location: scommesse.php");
-			}else{
-				if(!in_array($_GET['verifica'], scandir("../avvenimenti")){
-					require_once('../PHPExcel/Classes/PHPExcel.php');
+			}else{;
+				if(!in_array($_GET['verifica'].".json", scandir("../avvenimenti"))){
 					newScommessa($arr[1], $arr[0]);
 				}
+				
+				$st = file_get_contents("../avvenimenti/".$_GET['verifica'].".json");
+				$json = json_decode($st, true);
+
 				echo '<a href="scommesse.php">
-				<button class="btn btn-primary" type="button" style="width: 100%;" data-toggle="collapse" data-target="#collapseVerifica" aria-expanded="false" aria-controls="collapseVerifica">Back</button>
-				</a><table>';
+				<button class="btn btn-primary" type="button">Back</button>
+				</a><br>';
 				foreach(STUDENTI as $s){
-					echo '<tr><td><div class="col-xs-12">'.$s.'</div><div class="col-xs-12">Elenco quote</div></td></tr>';
+					echo '<button class="btn btn-primary col-xs-12" type="button" data-toggle="collapse" data-target="#c'.$s.'" aria-expanded="false">'.$s.'</button><div class="collapse row" id="c'.$s.'" style="margin:0px"><div class="col-sm-4">';
+					foreach($json[$s]['Esatto'] as $k => $v){
+						echo '<div class="row"><div class="col-xs-6">'.$k.'</div><div class="col-xs-6">'.round($v, 2).'</div><input type="radio" name="" id=""/></div>';
+					}
+					echo '</div><div class="col-sm-4">';
+					foreach($json[$s]['Under'] as $k => $v){
+						echo '<div class="row"><div class="col-xs-6">'.$k.'</div><div class="col-xs-6">'.round($v, 2).'</div><input type="radio" name="" id=""/></div>';
+					}
+					echo ' </div><div class="col-sm-4">';
+					foreach($json[$s]['Over'] as $k => $v){
+						echo '<div class="row"><div class="col-xs-6">'.$k.'</div><div class="col-xs-6">'.round($v, 2).'</div><input type="radio" name="" id=""/></div>';
+					}
+					echo '</div></div><br>';
 				}
-				echo '</table>';
 			}
 		}else{
 			$verifiche = getVerificheDisponibili();

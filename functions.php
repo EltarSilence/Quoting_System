@@ -87,6 +87,7 @@ function cmp($a, $b){
 	[x] Ultima modifica: creazione
 */
 function getWinsWeek() {
+	$conn = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
 	$sql = "SELECT scommesse.*, utenti.username FROM scommesse  INNER JOIN utenti ON utenti.id = scommesse.idUtente WHERE scommesse.data >= '".date("Y-m-d", strtotime(date("Y-m-d")."-7day"))."'";
 	$result = mysqli_query($conn, $sql);
 	$winner_s = array();
@@ -146,6 +147,7 @@ function getWinsWeek() {
 	[x] Ultima modifica: creazione
 */
 function getWinsMonth(){
+	$conn = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
 	$sql = "SELECT scommesse.*, utenti.username FROM scommesse  INNER JOIN utenti ON utenti.id = scommesse.idUtente WHERE scommesse.data >= '".date("Y-m-d", strtotime(date("Y-m-d")."-30day"))."'";
 	$result = mysqli_query($conn, $sql);
 	$winner_m = array();
@@ -250,8 +252,7 @@ function newScommessa($data, $materia){
 	$conn = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
 
 	$objReader = PHPExcel_IOFactory::createReader("Excel2007");
-	$excel = $objReader->load('Quoting.xlsx');
-
+	$excel = $objReader->load('../generazioneQuote/Quoting.xlsx');
 	$json = array();
 
 	$sql = 'INSERT INTO disponibili (dal, al, chiave) VALUES ("'.date('Y-m-d', strtotime('-10 day', strtotime($data))).'", "'.$data.'", "'.$materia.'_'.date('Ymd', strtotime($data)).'")';
@@ -280,7 +281,7 @@ function newScommessa($data, $materia){
 
 	    //lettura under
 		$UNDER = array();
-		$UNDER_values = array("10","9.75","9.25","8.75","8.25","7.75","7.25","6.75","6.25","5.75","5.25","4.75","4.25","3.75","3.25","2");
+		$UNDER_values = array("10","9.75","9.25","8.75","8.25","7.75","7.25","6.75","6.25","5.75","5.25","4.75","4.25","3.75","3.25","3","2");
 		for ($ex = 6; $ex<=22; $ex++) {
 			$UNDER_single = $excel->setActiveSheetIndex(0)->getCell('D'.$ex)->getCalculatedValue();
 			$UNDER[$UNDER_values[$ex-6]] = $UNDER_single;
@@ -289,9 +290,9 @@ function newScommessa($data, $materia){
 
 	    //lettura over
 		$OVER = array();
-		$OVER_values = array("9.25","8.75","8.25","7.75","7.25","6.75","6.25","5.75","5.25","4.75","4.25","3.75","3.25","2");
+		$OVER_values = array("10", "9.75", "9.25","8.75","8.25","7.75","7.25","6.75","6.25","5.75","5.25","4.75","4.25","3.75","3.25", "3", "2");
 		for ($ex = 6; $ex<=22; $ex++) {
-			$OVER_single = $excel->setActiveSheetIndex(0)->getCell('D'.$ex)->getCalculatedValue();
+			$OVER_single = $excel->setActiveSheetIndex(0)->getCell('E'.$ex)->getCalculatedValue();
 			$OVER[$OVER_values[$ex-6]] = $OVER_single;
 		}
 		$students['Over'] = $OVER;
