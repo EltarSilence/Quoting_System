@@ -12,40 +12,21 @@
 
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+	<script src="../scommessa.js"></script>
+	<script src="script.js"></script>
 </head>
 <style>
 	.row {
 		margin: 0;
 	}
-
-	.top {
-		color: white;
-		font-weight: bold;
-		background-color: black;
-	}
 </style>
 <body>
-	<div class="row top">
-		Biglietto
-	</div>
-	<hr>
 	<div class="row">
-		<div class="col-xs-12"><b>Verifica di Matematica</b></div>
+		<h4>Biglietto</h4>
 	</div>
-	<div class="row">
-		<div class="col-xs-8"><i>RIZZA G: VOTO ESATTO 4</i> - </div>
-		<div class="col-xs-4"><b>4,61</b> <i class="icon icon-exacoin"></i></div>
-	</div>
-	<hr>
-	<div class="row">
-		<div class="col-xs-12"><b>Verifica di Informatica</b></div>
-	</div>
-	<div class="row">
-		<div class="col-xs-8"><i>MARCHI A: OVER 6.75</i> - </div>
-		<div class="col-xs-4"><b>1,52</b> <i class="icon icon-exacoin"></i></div>
-	</div>
-	<hr>
+	<div id="multipla">
 
-	<button>Scommetti</button>>
+	</div>
+	<button class="btn btn-primary">Scommetti</button>
 </body>
 </html>
