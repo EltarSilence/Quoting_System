@@ -1,6 +1,15 @@
 input[type=radio]{
 	display: none;
 }
-td:hover{
-	background-color: gray;
+.intestazione{
+	color: black;
+	font-weight:bold;
+	text-align:center;
 }
+.click:hover{
+	background-color: #a7a7a7;
+}
+.click.active{
+	background-color: #68c368;
+}
+

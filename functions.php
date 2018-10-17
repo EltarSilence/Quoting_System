@@ -274,7 +274,7 @@ function newScommessa($data, $materia){
 		$EXACT = array();
 		$EXACT_values = array("10","9.5","9","8.5","8","7.5","7","6.5","6","5.5","5","4.5","4","3.5","3","2","1");
 		for ($ex = 6; $ex<=22; $ex++) {
-			$EXACT_single = $excel->setActiveSheetIndex(0)->getCell('A'.$ex)->getCalculatedValue();
+			$EXACT_single = $excel->setActiveSheetIndex(0)->getCell('A'.$ex)->getOldCalculatedValue();
 			$EXACT[$EXACT_values[$ex-6]] = $EXACT_single;
 		}
 		$students['Esatto'] = $EXACT;
@@ -283,7 +283,7 @@ function newScommessa($data, $materia){
 		$UNDER = array();
 		$UNDER_values = array("10","9.75","9.25","8.75","8.25","7.75","7.25","6.75","6.25","5.75","5.25","4.75","4.25","3.75","3.25","3","2");
 		for ($ex = 6; $ex<=22; $ex++) {
-			$UNDER_single = $excel->setActiveSheetIndex(0)->getCell('D'.$ex)->getCalculatedValue();
+			$UNDER_single = $excel->setActiveSheetIndex(0)->getCell('D'.$ex)->getOldCalculatedValue();
 			$UNDER[$UNDER_values[$ex-6]] = $UNDER_single;
 		}
 		$students['Under'] = $UNDER;
@@ -292,7 +292,7 @@ function newScommessa($data, $materia){
 		$OVER = array();
 		$OVER_values = array("10", "9.75", "9.25","8.75","8.25","7.75","7.25","6.75","6.25","5.75","5.25","4.75","4.25","3.75","3.25", "3", "2");
 		for ($ex = 6; $ex<=22; $ex++) {
-			$OVER_single = $excel->setActiveSheetIndex(0)->getCell('E'.$ex)->getCalculatedValue();
+			$OVER_single = $excel->setActiveSheetIndex(0)->getCell('E'.$ex)->getOldCalculatedValue();
 			$OVER[$OVER_values[$ex-6]] = $OVER_single;
 		}
 		$students['Over'] = $OVER;

@@ -13,6 +13,7 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="css.css">
 		<script src="script.js"></script>
+		<script src="../scommessa.js"></script>
 	</head>
 	<body>
 <?php
@@ -37,17 +38,18 @@
 				<button class="btn btn-primary" type="button">Back</button>
 				</a><br>';
 				foreach(STUDENTI as $s){
-					echo '<button class="btn btn-primary col-xs-12" type="button" data-toggle="collapse" data-target="#c'.$s.'" aria-expanded="false">'.$s.'</button><div class="collapse row" id="c'.$s.'" style="margin:0px"><div class="col-sm-4">';
+					$key = $_GET['verifica']."_".$s;
+					echo '<button class="btn btn-primary col-xs-12" type="button" data-toggle="collapse" data-target="#c'.$s.'" aria-expanded="false">'.$s.'</button><div class="collapse row" id="c'.$s.'" style="margin:0px"><div class="col-sm-4"><div class="intestazione">VOTO ESATTO</div>';
 					foreach($json[$s]['Esatto'] as $k => $v){
-						echo '<div class="row"><div class="col-xs-6">'.$k.'</div><div class="col-xs-6">'.round($v, 2).'</div><input type="radio" name="" id=""/></div>';
+						echo '<div class="row click"><div class="col-xs-6">'.$k.'</div><div class="col-xs-6">'.round($v, 2).'</div><input type="radio" name="'.$key.'" data-type="E" data-value="'.$k.'" data-quote="'.round($v, 2).'"/></div>';
 					}
-					echo '</div><div class="col-sm-4">';
+					echo '</div><div class="col-sm-4"><div class="intestazione">UNDER</div>';
 					foreach($json[$s]['Under'] as $k => $v){
-						echo '<div class="row"><div class="col-xs-6">'.$k.'</div><div class="col-xs-6">'.round($v, 2).'</div><input type="radio" name="" id=""/></div>';
+						echo '<div class="row click"><div class="col-xs-6">'.$k.'</div><div class="col-xs-6">'.round($v, 2).'</div><input type="radio" name="'.$key.'" data-type="U" data-value="'.$k.'" data-quote="'.round($v, 2).'"/></div>';
 					}
-					echo ' </div><div class="col-sm-4">';
+					echo ' </div><div class="col-sm-4"><div class="intestazione">OVER</div>';
 					foreach($json[$s]['Over'] as $k => $v){
-						echo '<div class="row"><div class="col-xs-6">'.$k.'</div><div class="col-xs-6">'.round($v, 2).'</div><input type="radio" name="" id=""/></div>';
+						echo '<div class="row click"><div class="col-xs-6">'.$k.'</div><div class="col-xs-6">'.round($v, 2).'</div><input type="radio" name="'.$key.'" data-type="O" data-value="'.$k.'" data-quote="'.round($v, 2).'"/></div>';
 					}
 					echo '</div></div><br>';
 				}

@@ -64,8 +64,16 @@ body {
 	border-radius: 25px;
 	box-shadow: 0 0 20px 6px #FFEB3B;
 }
-
 #scom {
 	height: 600px;
 	padding: 0;
+}
+#biglietto{
+	border: 0;
+	padding: 0;
+	height: 1px;
+	margin-top: 20px;
+	height: 243px;
+    box-shadow: 1px 1px 33px 1px #ff0099;
+    border-radius: 5px;
 }
