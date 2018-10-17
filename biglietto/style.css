@@ -1,0 +1,16 @@
+.card {
+	width: 100%;
+}
+.row {
+	margin: 0;
+}
+#quota_finale{
+	text-align: center;
+	font-weight: bold;
+	font-size: 22px;
+}
+.icon-cancel{
+    color: red;
+    float: right;
+    cursor: pointer;
+}

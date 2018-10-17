@@ -1,6 +1,21 @@
+var sc = new Scommessa();
 $(document).ready(function() {
-	var sc = new Scommessa();
-
+	update();
+	
+	$("i").on("click", function(){
+		var k = $(this).parents("ul").attr("data-key");
+		sc.removeMultipla(k);
+		$(this).parents("ul").remove();
+		$("#quota_finale").html(sc.getQuotaFinale());
+		parent.top.$("#scom")[0].contentWindow.postMessage("cookieAreUpdated",'*');
+	});
+	
+});
+parent.top.$("#biglietto")[0].contentWindow.onmessage = function(e){
+	parent.top.$("#biglietto")[0].src += "";
+}
+function update(){
+	$("#multipla").html("");
 	for (var i = 0; i < sc.size(); i++) {
 		var multiple = sc.getMultipla(i);
 
@@ -15,11 +30,12 @@ $(document).ready(function() {
 		var tipo = multiple.type;
 		var value = multiple.value;
 
-		var output = '<hr><div class="row"><div class="col-xs-12"><b>Verifica di'+materia+'</b></div></div><div class="row"><div class="col-xs-8"><i>'+persona+': '+tipo+' '+value+'</i> - </div><div class="col-xs-4"><b>'+quota+'</b> <i class="icon icon-exacoin"></i></div></div>';
+		var output = '<ul class="list-group list-group-flush" data-key="'+chiave+'"><li class="list-group-item">Verifica di ' + materia +'<br>' + persona+': '+tipo+' '+value+' <b>'+quota+'</b><i class="icon icon-cancel"></i></li></ul>';		
+
 		$("#multipla").append(output);
 	}
+	$("#quota_finale").html(sc.getQuotaFinale());
 
-
-
-	sc.getQuotaFinale();
-});
+	var h = $("body", parent.top.$("#biglietto").contents())[0].scrollHeight
+	parent.top.$("#biglietto").height(h);
+}
