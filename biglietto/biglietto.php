@@ -1,3 +1,9 @@
+<?php
+	session_start();
+	if(!isset($_SESSION['user_id'])){
+		setcookie("quoting", "");
+	}else{
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,3 +27,6 @@
 	</div>
 </body>
 </html>
+<?php
+	}
+?>
