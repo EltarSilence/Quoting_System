@@ -7,6 +7,8 @@ $(document).ready(function() {
 		sc.removeMultipla(k);
 		$(this).parents("ul").remove();
 		$("#quota_finale").html(sc.getQuotaFinale());
+		var h = $("body", parent.top.$("#biglietto").contents())[0].scrollHeight
+		parent.top.$("#biglietto").height(h);
 		parent.top.$("#scom")[0].contentWindow.postMessage("cookieAreUpdated",'*');
 	});
 	
