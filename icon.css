@@ -34,3 +34,9 @@ i {
 .icon-cancel:before {
   content: "\ea0f";
 }
+.icon-up:before {
+  content: "\f077";
+}
+.icon-down:before {
+  content: "\f078";
+}
