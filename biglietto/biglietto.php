@@ -22,8 +22,18 @@
 		Biglietto
 	</div>
 	<div id="multipla"></div>
-	<div class="card-header">Quota finale: <div id="quota_finale"></div></div>
-	<button class="btn btn-primary">Scommetti</button>
+	<div class="card-header">
+		Quota finale: <div id="quota_finale"></div>
+	</div>
+	
+	<button class="btn btn-default" id="aum"><i class="icon icon-up"></i></button>
+	<input id="importo" type="number" min="200" max="10000" value="100">
+	<button class="btn btn-default" id="decr"><i class="icon icon-down"></i></button>
+	
+	<div class="card-header">
+		Possibile Vincita: <div id="vincita"></div>
+	</div>
+	<button id="scommetti" class="btn btn-primary">Scommetti</button>
 	</div>
 </body>
 </html>

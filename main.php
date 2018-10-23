@@ -26,7 +26,7 @@
 	</script>
 </head>
 <body>
-	<div class="row header" style="margin:0px; padding: 0px; border: 0px">
+	<div class="row header" style="margin:0px; position: fixed; padding: 0px; border: 0px; z-index: 9999; background-color: white;">
 		<div class="col-sm-9 header">
 			Quoting by Rizza, Ravasi, Gallina
 		</div>
@@ -60,7 +60,7 @@
 		
 	</div>
 	<br>
-	<div class="row" style="margin: 0px;">
+	<div class="row" style="margin: 0px; margin-top: 45px">
 		<div class="col-sm-8">
 			<iframe src="scommesse/scommesse.php" class="col-sm-12" id="scom"></iframe>
 		</div>

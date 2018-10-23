@@ -51,13 +51,15 @@ class Scommessa{
 		}
 	}
 	scommetti(coin){
-		if(size() > 0 && coin != ""){
+		if(this.size() > 0 && coin != ""){
 			var formdata = new FormData();
 			formdata.append("coin", coin);
-			formdata.append("multiple", this.list);
-			
+			for(var i = 0; i < this.size(); i++){
+				var s = this.list[0]['chiave']+"|"+this.list[0]['type']+"|"+this.list[0]['value'];
+				formdata.append("multiple", s);	
+			}
 			$.ajax({
-				url: "",
+				url: "sendData.php",
 				type: 'POST',
 				data: formdata,
 				processData: false,
@@ -67,9 +69,15 @@ class Scommessa{
 				},
 				success: function (data){
 					//hide eventuale loader
+					debugger;
+					
+					this.list = new Array();
+					this.setCookie();
 				},
 				error: function(er){
 					//show errori
+					console.log(er);
+					debugger;
 				}
 			});
 		}else{
