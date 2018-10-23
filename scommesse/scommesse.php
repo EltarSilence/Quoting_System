@@ -1,8 +1,8 @@
-<?php 
+<?php
 	session_start();
 	require_once('../config.php');
 	require_once('../functions.php');
-	require_once('../PHPExcel/Classes/PHPExcel.php');	
+	require_once('../PHPExcel/Classes/PHPExcel.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -19,7 +19,7 @@
 <?php
 	if (!isset($_SESSION['user_id'])){
 		echo '<div class="alert alert-info" role="alert">
-		<strong><a href="login/login.php">Accedi</a></strong> per giocare.
+		<strong>Accedi in alto a destra</strong> per giocare.
 	</div>';
 	}else {
 		if(isset($_GET['verifica'])){
@@ -30,7 +30,7 @@
 				if(!in_array($_GET['verifica'].".json", scandir("../avvenimenti"))){
 					newScommessa($arr[1], $arr[0]);
 				}
-				
+
 				$st = file_get_contents("../avvenimenti/".$_GET['verifica'].".json");
 				$json = json_decode($st, true);
 
@@ -56,7 +56,7 @@
 			}
 		}else{
 			$verifiche = getVerificheDisponibili();
-			foreach($verifiche as $v){					
+			foreach($verifiche as $v){
 				$arr = explode("_", $v['chiave']);
 				$materia = $arr[0];
 				$data = date("d/m/Y", strtotime($arr[1]));

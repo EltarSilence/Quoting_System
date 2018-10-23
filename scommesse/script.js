@@ -1,15 +1,15 @@
 $(document).ready(function (){
 	var sc = new Scommessa();
-	
+
 	for(var i = 0; i < sc.size(); i++){
 		var d = sc.getMultipla(i);
 		var el = $("input[data-value='"+d['value']+"'][data-type='"+d['type'].substr(0, 1)+"'][name='"+d['chiave']+"']", parent.top.$("#scom").contents());
-		if(el.length > 0){				
+		if(el.length > 0){
 			el[0].checked = true
 			$(el, parent.top.$("#scom").contents()).parent().addClass("active");
 		}
 	}
-	
+		
 	$(".click").on("click", function(){
 		var n = $("input[type=radio]", this).attr("name");
 		var t = "UNDER";

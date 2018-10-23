@@ -2,6 +2,11 @@ class Scommessa{
 	constructor(){
 		this.list = new Array();
 		this.getCookie();
+		if(this.list.length == 0){
+			$("#scommetti", parent.top.$("#biglietto").contents())[0].disabled = true;
+		}else{
+			$("#scommetti", parent.top.$("#biglietto").contents())[0].disabled = false;
+		}
 		this.cookieChecker();
 	}
 	addMultipla(chiave, type, value, quota){
@@ -55,8 +60,8 @@ class Scommessa{
 			var formdata = new FormData();
 			formdata.append("coin", coin);
 			for(var i = 0; i < this.size(); i++){
-				var s = this.list[0]['chiave']+"|"+this.list[0]['type']+"|"+this.list[0]['value'];
-				formdata.append("multiple", s);	
+				var s = this.list[i]['chiave']+"|"+this.list[i]['type']+"|"+this.list[i]['value'];
+				formdata.append("multiple[]", s);
 			}
 			$.ajax({
 				url: "sendData.php",
@@ -69,15 +74,24 @@ class Scommessa{
 				},
 				success: function (data){
 					//hide eventuale loader
-					debugger;
-					
-					this.list = new Array();
-					this.setCookie();
+					this.list = new Array();
+          var d = new Date();
+      		d.setTime(d.getTime() + (24*60*60*1000));
+      		var val = "";
+      		for(var i = 0; i <  this.list.length; i++){
+      			val += this.list[i]['chiave'] + ":" +
+      			this.list[i]['type'] + ":" +
+      			this.list[i]['value'] + ":" +
+      			this.list[i]['quota'] + "|";
+      		}
+      		document.cookie = "quoting=" + (val == "" ? null : val) + ";" + "expires="+ d.toUTCString() + ";path=/";
+
+					parent.top.location.href += "";
+
 				},
 				error: function(er){
 					//show errori
 					console.log(er);
-					debugger;
 				}
 			});
 		}else{
@@ -125,7 +139,7 @@ class Scommessa{
 				a['quota'] = d[3];
 				this.list.push(a);
 				var el = $("input[data-value='"+d[2]+"'][data-type='"+d[1].substr(0, 1)+"'][name='"+d[0]+"']", parent.top.$("#scom").contents());
-				if(el.length > 0){				
+				if(el.length > 0){
 					el[0].checked = true
 					$(el).parent().addClass("active");
 				}
@@ -143,6 +157,12 @@ class Scommessa{
 			this.list[i]['quota'] + "|";
 		}
 		document.cookie = "quoting=" + (val == "" ? null : val) + ";" + "expires="+ d.toUTCString() + ";path=/";
+
+		if(this.list.length == 0){
+			$("#scommetti", parent.top.$("#biglietto").contents())[0].disabled = true;
+		}else{
+			$("#scommetti", parent.top.$("#biglietto").contents())[0].disabled = false;
+		}
 	}
 	cookieChecker(){
 		parent.top.$("#scom")[0].contentWindow.onmessage = function(e){
@@ -168,17 +188,17 @@ class Scommessa{
 				var l = coockie.split("|");
 				for(var i = 0; i < l.length - 1; i++){
 					var d = l[i].split(":");
-					
+
 					var el = $("input[data-value='"+d[2]+"'][data-type='"+d[1].substr(0, 1)+"'][name='"+d[0]+"']", parent.top.$("#scom").contents());
-					if(el.length > 0){				
+					if(el.length > 0){
 						el[0].checked = true
 						$(el, parent.top.$("#scom").contents()).parent().addClass("active");
 					}
 				}
 			}
 		}
-		parent.top.$("#biglietto")[0].contentWindow.onmessage = function(e){	
-			parent.top.$("#biglietto")[0].src += "";	
+		parent.top.$("#biglietto")[0].contentWindow.onmessage = function(e){
+			parent.top.$("#biglietto")[0].src += "";
 		}
 	}
-}
+}

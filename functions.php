@@ -87,8 +87,9 @@ function cmp($a, $b){
 	[x] Ultima modifica: creazione
 */
 function getWinsWeek() {
+	checkAndPayBet();
 	$conn = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
-	$sql = "SELECT scommesse.*, utenti.username FROM scommesse  INNER JOIN utenti ON utenti.id = scommesse.idUtente WHERE scommesse.data >= '".date("Y-m-d", strtotime(date("Y-m-d")."-7day"))."'";
+	$sql = "SELECT scommesse.*, utenti.username FROM scommesse  INNER JOIN utenti ON utenti.id = scommesse.idUtente WHERE scommesse.data >= '".date("Y-m-d", strtotime(date("Y-m-d")."-7day"))."' AND scommesse.pagata = 1";
 	$result = mysqli_query($conn, $sql);
 	$winner_s = array();
 	while($row = mysqli_fetch_assoc($result)){
@@ -147,8 +148,9 @@ function getWinsWeek() {
 	[x] Ultima modifica: creazione
 */
 function getWinsMonth(){
+	checkAndPayBet();
 	$conn = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
-	$sql = "SELECT scommesse.*, utenti.username FROM scommesse  INNER JOIN utenti ON utenti.id = scommesse.idUtente WHERE scommesse.data >= '".date("Y-m-d", strtotime(date("Y-m-d")."-30day"))."'";
+	$sql = "SELECT scommesse.*, utenti.username FROM scommesse  INNER JOIN utenti ON utenti.id = scommesse.idUtente WHERE scommesse.data >= '".date("Y-m-d", strtotime(date("Y-m-d")."-30day"))."'  AND scommesse.pagata = 1";
 	$result = mysqli_query($conn, $sql);
 	$winner_m = array();
 	while($row = mysqli_fetch_assoc($result)){
@@ -296,7 +298,7 @@ function newScommessa($data, $materia){
 			$OVER[$OVER_values[$ex-6]] = $OVER_single;
 		}
 		$students['Over'] = $OVER;
-		
+
 		mysqli_close($conn);
 
 		$objWriter = PHPExcel_IOFactory::createWriter($excel, "Excel2007");
